@@ -26,9 +26,9 @@ function SearchScreen() {
         {/*A scrollview is similar to View, except that ScrollView automatically detects if there is a lot of content on the page and enables scroll. */}
         <ScrollView>   
             <ResultsList title="Cost Effective" results={filterResultsByPrice('$')} />
-            <ResultsList title="Bit Pricier"  results={filterResultsByPrice('$$')}/>
-            <ResultsList title="Big Spender" results={filterResultsByPrice('$$$')}/>
-            <ResultsList title="Biggest Spender" results={filterResultsByPrice('$$$$')}/>        
+            <ResultsList title="Bit Pricier"  results={filterResultsByPrice('$$')} />
+            <ResultsList title="Big Spender" results={filterResultsByPrice('$$$')} />
+            <ResultsList title="Biggest Spender" results={filterResultsByPrice('$$$$')} />        
         </ScrollView>
     </View>
 }
