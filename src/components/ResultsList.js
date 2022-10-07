@@ -1,26 +1,32 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
+import ResultsDetail from './ResultsDetail';
 
 function ResultsList({title, results}) {
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
             <FlatList 
                 horizontal
+                showsHorizontalScrollIndicator={false}
                 data={results}
                 keyExtractor={result => result.id}
-                renderItem={ ({item}) => <Text>{item.name}</Text> }
+                renderItem={ ({item}) =>  <ResultsDetail result={item}></ResultsDetail>}
             />
-            <Text>Results: {results.length}</Text>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
+    container: {
+        marginBottom: 15
+    },
+
     title: {
-        fontSize: 10,
-        fontWeight: 'bold'
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginLeft: 15,
+        marginBottom: 5
     }
 })
 

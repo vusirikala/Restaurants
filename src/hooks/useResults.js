@@ -13,13 +13,16 @@ function useResults() {
                     location: 'San Jose'
                 }
             });
-            setResults(response.data.businesses);    
+            setResults(response.data.businesses);   
+            setErrorMessage(''); 
         } catch (err) {
-            setErrorMessage('Something went wrong')
+            setErrorMessage(err)
         }
     }
     
-    // useEffect(() => searchApi('pasta'), [])
+    useEffect(() => {
+        searchApi('pasta')
+    }, [])
 
     return [searchApi, results, errorMessage];
 }

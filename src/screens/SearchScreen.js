@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import yelp from '../api/yelp';
 import SearchBar from '../components/SearchBar';
 import useResults from '../hooks/useResults';
@@ -15,16 +15,21 @@ function SearchScreen() {
         return results.filter(result => result.price === price);
     }
 
-    return <View>
-     <SearchBar 
-            term={searchTerm} 
-            onTermChange={newTerm => {setSearchTerm(newTerm); console.log(newTerm)}}
-            onTermSubmit={() => searchApi(searchTerm)}
-            />
-    {errorMessage ? <Text>{errorMessage}</Text> : null}
-    <ResultsList title="Cost Effective" results={filterResultsByPrice('$')} />
-    <ResultsList title="Big Pricier"  results={filterResultsByPrice('$$')}/>
-    <ResultsList title="Big Spender" results={filterResultsByPrice('$$$')}/>
+    {/* flex=1 is applied so that the SearchScreen only occupies whatever the content needs*/}
+    return <View style={{flex: 1}}> 
+        <SearchBar 
+                term={searchTerm} 
+                onTermChange={newTerm => {setSearchTerm(newTerm); console.log(newTerm)}}
+                onTermSubmit={() => searchApi(searchTerm)}
+                />
+        {errorMessage ? <Text>{errorMessage}</Text> : null}
+        {/*A scrollview is similar to View, except that ScrollView automatically detects if there is a lot of content on the page and enables scroll. */}
+        <ScrollView>   
+            <ResultsList title="Cost Effective" results={filterResultsByPrice('$')} />
+            <ResultsList title="Bit Pricier"  results={filterResultsByPrice('$$')}/>
+            <ResultsList title="Big Spender" results={filterResultsByPrice('$$$')}/>
+            <ResultsList title="Biggest Spender" results={filterResultsByPrice('$$$$')}/>        
+        </ScrollView>
     </View>
 }
 
